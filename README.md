@@ -14,19 +14,27 @@ Release 0.1, 2015-07-05
 GET IT GOING
 ============
 
-0. Built your foot switch. qu-foot-switch-raspberry-gpio.png in the docs folder contains the  
+1. Built your foot switch. qu-foot-switch-raspberry-gpio.png in the docs folder contains the  
    schematics. There you can also find the original wiki post.
 
-1. Copy all files from the directory somewhere to your Raspberry Pi. 
+2. Copy all files from the directory somewhere to your Raspberry Pi. 
+3. Configure neede things:
+```
+config.py – needs the correct IP address for your QU desk – you can also edit mute group numbers vs buttons/leds on the footswitch in that file.
 
-2. Run as root: ./startup.sh
+quPy.sh – needs the correct path info to files on your Pi
+
+startup.sh – needed some attention on correct path as well – not sure why, but it’s maybe the way I have Linux set up on the Pi or something to do with the ‘dirname’ command?
+```
+
+4. Run as root: ./startup.sh
    You will get debug output.
 
-3. You might get error messages if you're missing Python modules such
+5. You might get error messages if you're missing Python modules such
    as the one for the GPIO of the Pi. If so, install those modules
    via the package manager and retry.
    
-4. Assuming, you're using TinyCore Linux, you can use quPy.sh as
+6. Assuming, you're using TinyCore Linux, you can use quPy.sh as
    a startup script in your boot sequence.
    This will even redirect the debug to the system log.
 
@@ -39,7 +47,7 @@ MISSING STUFF
   yet. This needs to be implemented in qunetworkhandler.py where
   the events from the MIDI-parser are dealt with
   
-* Reading large amounts of MIDI data fro the net is slow. This is while
+* Reading large amounts of MIDI data from the net is slow. This is while
   receiving the status dump after connecting takes quite a while.
   qunetworkhandler.py could probably have a better implementation
   for reading the data other than bytewise.
